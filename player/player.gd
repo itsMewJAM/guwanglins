@@ -11,4 +11,3 @@ func _process(delta: float) -> void:
 		direction_facing = direction_trying
 	
 	trying_jump = Input.is_action_pressed("player_jump")
-	

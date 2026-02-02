@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cb70s0qb64mt2"]
+
+[ext_resource type="Script" uid="uid://b4ip51nxwoxxo" path="res://player/player.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://c5570evmy7gxf" path="res://player/guwanglin.png" id="2_i3pqv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_onrkg")
+speed_grounded = null
+speed_airborne = null
+jump_force = null
+gravity = null
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-6, -19)
+texture = ExtResource("2_i3pqv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -15)
+shape = SubResource("CapsuleShape2D_onrkg")

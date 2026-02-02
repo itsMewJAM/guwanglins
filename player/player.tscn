@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cb70s0qb64mt2"]
 
-[ext_resource type="Script" uid="uid://b4ip51nxwoxxo" path="res://player.gd" id="1_onrkg"]
-[ext_resource type="Texture2D" uid="uid://c5570evmy7gxf" path="res://guwanglin.png" id="2_i3pqv"]
+[ext_resource type="Script" uid="uid://b4ip51nxwoxxo" path="res://player/player.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://c5570evmy7gxf" path="res://player/guwanglin.png" id="2_i3pqv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
 

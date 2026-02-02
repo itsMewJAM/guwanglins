@@ -1,1 +1,7 @@
-extends CharacterBody2D
+extends GroundedCharacter2D
+
+func _process(delta: float) -> void:
+	# Get movement direction from input
+	direction = Input.get_axis("player_left", "player_right")
+	
+	trying_jump = Input.is_action_just_pressed("player_jump")

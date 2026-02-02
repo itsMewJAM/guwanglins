@@ -4,11 +4,11 @@ extends CharacterBody2D
 # Should be usable for both player and enemy.
 
 @export var speed := 100.0
-@export var jump_force := 100.0
+@export var jump_force := -180.0
 @export var gravity := 400.0
 
 var direction := 0
-var trying_jump := false
+var trying_jump
 
 func _physics_process(delta: float) -> void:
 	#Horizontal Movement
@@ -19,6 +19,8 @@ func _physics_process(delta: float) -> void:
 	
 	#Attempt Jump
 	if trying_jump and is_on_floor():
+		#print("JUMPING")
+		#position.y -= 11
 		velocity.y = jump_force
 	
 	#Do Movement using velocity

@@ -32,7 +32,8 @@ func _physics_process(delta: float) -> void:
 			jumping = true # Will remain false if fallen from a ledge
 	else:
 		if jumping:
-			velocity.x = direction_jumping * speed_airborne
+			if velocity.y < 0: # Jump is rising
+				velocity.x = direction_jumping * speed_airborne
 		else:	
 			velocity.x = 0
 	

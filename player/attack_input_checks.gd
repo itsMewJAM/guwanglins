@@ -7,27 +7,31 @@ extends Node
 static func check_623X(input_registry):
 	var hit6 = false
 	var hit2 = false
-	var hit3 = false
 	var between = 0
 	var idx = 0
+	print(input_registry)
 	for input in input_registry:
 		if !hit6:
 			if input == 6:
 				hit6 = true
+				print('hit6')
 				between = -1
 		elif !hit2:
 			if input == 6: between = -1
 			if input == 1 or input == 4 or input == 7: return false
 			if input == 2:
+				print('hit2')
 				hit2 = true
 				between = -1
 		else:
-			if input == 3: return true if input_registry.size() - idx <= 6 else false
+			if input == 3: 
+				print('done')
+				return true if input_registry.size() - idx <= 6 else false
 			elif input != 2: return false
 		between += 1
 		idx += 1
-		if hit6 and between > 6: return false
-	print(input_registry)
+		if hit6 and between > 10: return false
+	
 	return false
 
 # Check for 236X input. Conditions: 

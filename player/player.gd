@@ -30,7 +30,7 @@ func _handle_animation() -> void:
 	
 func _handle_attack_input() -> Attack:
 	# Maps the player input to the numpad notation of inputs
-	var input_8way = 5 + Input.get_axis("player_left", "player_right") + 3*(Input.get_axis("player_up", "player_down"))
+	var input_8way = 5 + Input.get_axis("player_left", "player_right") - 3*(Input.get_axis("player_up", "player_down"))
 	input_registry.append(input_8way)
 	if input_registry.size() > 30:
 		input_registry.pop_front()

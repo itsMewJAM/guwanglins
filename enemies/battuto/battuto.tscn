@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://fchlp0pf8cpe"]
+
+[ext_resource type="Texture2D" uid="uid://dngjhipphaxjx" path="res://enemies/battuto/sprites/battuto_eye_back.png" id="1_fqeix"]
+[ext_resource type="Texture2D" uid="uid://dwavvqbik65wt" path="res://enemies/battuto/sprites/battuto_eye.png" id="2_a75xy"]
+[ext_resource type="Texture2D" uid="uid://ki47jvud2wmb" path="res://enemies/battuto/sprites/battuto_body.png" id="3_8fkes"]
+[ext_resource type="Texture2D" uid="uid://dparyqyh6u3kv" path="res://enemies/battuto/sprites/battuto_spikes.png" id="4_tajfi"]
+[ext_resource type="Texture2D" uid="uid://bgnpqfodbadse" path="res://enemies/battuto/sprites/battuto_wings.png" id="5_dkhj1"]
+
+[node name="Battuto" type="CharacterBody2D"]
+
+[node name="BackEyeSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_fqeix")
+
+[node name="EyeSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_a75xy")
+
+[node name="BodySprite" type="Sprite2D" parent="."]
+position = Vector2(0, 4.5)
+texture = ExtResource("3_8fkes")
+
+[node name="SpikesSprite" type="Sprite2D" parent="."]
+position = Vector2(0, 16)
+texture = ExtResource("4_tajfi")
+
+[node name="WingsSprite" type="Sprite2D" parent="."]
+position = Vector2(0, 14)
+texture = ExtResource("5_dkhj1")

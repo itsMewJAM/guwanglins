@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djra6u41nu5c"
-path="res://.godot/imported/blockout_terrain.png-c800fd01fe9066d2c6c198b49072fbb5.ctex"
+uid="uid://bkv3n81dtd0n1"
+path="res://.godot/imported/guwanglin_idle0.png-10a611c564f692d295f1670221fb722a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tilesets/blockout_terrain.png"
-dest_files=["res://.godot/imported/blockout_terrain.png-c800fd01fe9066d2c6c198b49072fbb5.ctex"]
+source_file="res://player/sprites/guwanglin_idle0.png"
+dest_files=["res://.godot/imported/guwanglin_idle0.png-10a611c564f692d295f1670221fb722a.ctex"]
 
 [params]
 

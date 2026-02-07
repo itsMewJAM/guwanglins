@@ -1,14 +1,16 @@
-[gd_scene load_steps=12 format=3 uid="uid://cb70s0qb64mt2"]
+[gd_scene load_steps=14 format=3 uid="uid://cb70s0qb64mt2"]
 
 [ext_resource type="Script" uid="uid://b4ip51nxwoxxo" path="res://player/player.gd" id="1_onrkg"]
-[ext_resource type="Texture2D" uid="uid://c5570evmy7gxf" path="res://player/player_assets/guwanglin.png" id="2_i3pqv"]
-[ext_resource type="Texture2D" uid="uid://bkv3n81dtd0n1" path="res://player/player_assets/guwanglin_idle0.png" id="3_boad6"]
-[ext_resource type="Texture2D" uid="uid://cjp5ecu7t4pcd" path="res://player/player_assets/guwanglin_unsheathe0.png" id="4_rgyib"]
-[ext_resource type="Texture2D" uid="uid://crw1re3txop6k" path="res://player/player_assets/guwanglin_unsheathe1.png" id="5_hg6s5"]
-[ext_resource type="Texture2D" uid="uid://dtrtua65euefl" path="res://player/player_assets/guwanglin_unsheathe236x.png" id="6_8t03j"]
-[ext_resource type="Texture2D" uid="uid://cuvcfd021waom" path="res://player/player_assets/guwanglin_unsheathed.png" id="7_2ieo8"]
-[ext_resource type="Texture2D" uid="uid://dyg8xac7h3ntl" path="res://player/player_assets/guwanglin_5x1.png" id="8_hg6s5"]
-[ext_resource type="Texture2D" uid="uid://kmxxmq7styy6" path="res://player/player_assets/guwanglin_sheathe0.png" id="9_8t03j"]
+[ext_resource type="Texture2D" uid="uid://c5570evmy7gxf" path="res://player/sprites/guwanglin.png" id="2_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://bkv3n81dtd0n1" path="res://player/sprites/guwanglin_idle0.png" id="3_boad6"]
+[ext_resource type="Texture2D" uid="uid://cjp5ecu7t4pcd" path="res://player/sprites/guwanglin_unsheathe0.png" id="4_rgyib"]
+[ext_resource type="Texture2D" uid="uid://crw1re3txop6k" path="res://player/sprites/guwanglin_unsheathe1.png" id="5_hg6s5"]
+[ext_resource type="Texture2D" uid="uid://dtrtua65euefl" path="res://player/sprites/guwanglin_unsheathe236x.png" id="6_8t03j"]
+[ext_resource type="Texture2D" uid="uid://cuvcfd021waom" path="res://player/sprites/guwanglin_unsheathed.png" id="7_2ieo8"]
+[ext_resource type="Texture2D" uid="uid://dyg8xac7h3ntl" path="res://player/sprites/guwanglin_5x1.png" id="8_hg6s5"]
+[ext_resource type="Texture2D" uid="uid://kmxxmq7styy6" path="res://player/sprites/guwanglin_sheathe0.png" id="9_8t03j"]
+[ext_resource type="Script" uid="uid://xit3eyg7hh3p" path="res://classes/states/state_machine.gd" id="10_8t03j"]
+[ext_resource type="Script" uid="uid://b8tomr5k3s865" path="res://player/states/player_idle.gd" id="11_2ieo8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
 
@@ -98,7 +100,7 @@ visible = false
 position = Vector2(-6, -19)
 texture = ExtResource("2_i3pqv")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="TerrainCollider" type="CollisionShape2D" parent="."]
 position = Vector2(0, -15)
 shape = SubResource("CapsuleShape2D_onrkg")
 
@@ -107,3 +109,13 @@ position = Vector2(6, -32)
 scale = Vector2(0.989583, 0.980263)
 sprite_frames = SubResource("SpriteFrames_ebec5")
 animation = &"unsheathe"
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("10_8t03j")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("11_2ieo8")
+
+[node name="Run" type="Node" parent="StateMachine"]
+
+[node name="Jump" type="Node" parent="StateMachine"]

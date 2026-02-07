@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5570evmy7gxf"
-path="res://.godot/imported/guwanglin.png-dd18afbb6babd703ab81806db4ed7779.ctex"
+uid="uid://crw1re3txop6k"
+path="res://.godot/imported/guwanglin_unsheathe1.png-23057ac460a78ca91234886484dd3288.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/player_assets/guwanglin.png"
-dest_files=["res://.godot/imported/guwanglin.png-dd18afbb6babd703ab81806db4ed7779.ctex"]
+source_file="res://player/sprites/guwanglin_unsheathe1.png"
+dest_files=["res://.godot/imported/guwanglin_unsheathe1.png-23057ac460a78ca91234886484dd3288.ctex"]
 
 [params]
 

@@ -5,6 +5,7 @@ class_name Player
 # Preloads & get nodes
 const InputChecker = preload('res://player/attack_input_checks.gd')
 @export var anim : AnimationPlayer
+@export var sprite: Sprite2D
 
 # MOVEMENT STATS
 @export var speed_grounded := 100.0
@@ -32,6 +33,12 @@ func _process(delta: float) -> void:
 	direction_trying = 5 + Input.get_axis("player_left", "player_right") - 3*(Input.get_axis("player_up", "player_down"))
 	trying_jump = Input.is_action_just_pressed("player_jump")
 	attack = _handle_attack_input()
+	
+	# Update facing direction
+	if change_dir_allowed and Input.get_axis("player_left", "player_right") != 0:
+		direction_facing = Input.get_axis("player_left", "player_right")
+	sprite.flip_h = direction_facing < 0
+	sprite.offset.x = 6 - direction_facing * 6 # NOTE: Temporary fix to keep standing player sprite centered
 	
 func _physics_process(delta: float) -> void:
 	# Apply gravity

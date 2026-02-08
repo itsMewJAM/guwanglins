@@ -1,0 +1,128 @@
+[gd_scene load_steps=16 format=3 uid="uid://cb70s0qb64mt2"]
+
+[ext_resource type="Texture2D" uid="uid://c5570evmy7gxf" path="res://player/sprites/guwanglin.png" id="2_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://bkv3n81dtd0n1" path="res://player/sprites/guwanglin_idle0.png" id="3_boad6"]
+[ext_resource type="Texture2D" uid="uid://cjp5ecu7t4pcd" path="res://player/sprites/guwanglin_unsheathe0.png" id="4_rgyib"]
+[ext_resource type="Texture2D" uid="uid://crw1re3txop6k" path="res://player/sprites/guwanglin_unsheathe1.png" id="5_hg6s5"]
+[ext_resource type="Texture2D" uid="uid://dtrtua65euefl" path="res://player/sprites/guwanglin_unsheathe236x.png" id="6_8t03j"]
+[ext_resource type="Texture2D" uid="uid://cuvcfd021waom" path="res://player/sprites/guwanglin_unsheathed.png" id="7_2ieo8"]
+[ext_resource type="Texture2D" uid="uid://dyg8xac7h3ntl" path="res://player/sprites/guwanglin_5x1.png" id="8_hg6s5"]
+[ext_resource type="Texture2D" uid="uid://kmxxmq7styy6" path="res://player/sprites/guwanglin_sheathe0.png" id="9_8t03j"]
+[ext_resource type="Script" uid="uid://xit3eyg7hh3p" path="res://classes/states/state_machine.gd" id="10_8t03j"]
+[ext_resource type="Script" uid="uid://b8tomr5k3s865" path="res://player/states/player_idle.gd" id="11_2ieo8"]
+[ext_resource type="Script" uid="uid://b24tfvc7hqyoc" path="res://player/states/player_run.gd" id="12_kb6p2"]
+[ext_resource type="Script" uid="uid://imtt4yc6spo" path="res://player/states/player_jump.gd" id="13_wodsf"]
+[ext_resource type="Script" uid="uid://5oybiurmoc2" path="res://player/states/player_fall.gd" id="14_32hag"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_onrkg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ebec5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_boad6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_rgyib")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_hg6s5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_8t03j")
+}],
+"loop": true,
+"name": &"236x",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_2ieo8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_hg6s5")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_2ieo8")
+}],
+"loop": true,
+"name": &"attack_stance",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_boad6")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_hg6s5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_8t03j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_boad6")
+}],
+"loop": true,
+"name": &"sheathe",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_boad6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_8t03j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_hg6s5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_2ieo8")
+}],
+"loop": true,
+"name": &"unsheathe",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-6, -19)
+texture = ExtResource("2_i3pqv")
+
+[node name="TerrainCollider" type="CollisionShape2D" parent="."]
+position = Vector2(0, -15)
+shape = SubResource("CapsuleShape2D_onrkg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(6, -32)
+scale = Vector2(0.989583, 0.980263)
+sprite_frames = SubResource("SpriteFrames_ebec5")
+animation = &"unsheathe"
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("10_8t03j")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("11_2ieo8")
+
+[node name="Run" type="Node" parent="StateMachine"]
+script = ExtResource("12_kb6p2")
+
+[node name="Jump" type="Node" parent="StateMachine"]
+script = ExtResource("13_wodsf")
+
+[node name="Fall" type="Node" parent="StateMachine"]
+script = ExtResource("14_32hag")

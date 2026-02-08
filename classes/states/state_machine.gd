@@ -2,11 +2,13 @@ extends Node
 
 class_name StateMachine
 
+var parent
 @export var initial_state: State
 var current_state: State
 var states: Dictionary = {}
 
 func _ready() -> void:
+	parent = get_parent()
 	# Add all child states to dict
 	for child in get_children():
 		if child is State:

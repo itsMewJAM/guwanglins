@@ -9,10 +9,8 @@
 [ext_resource type="Script" uid="uid://imtt4yc6spo" path="res://player/states/player_jump.gd" id="13_wodsf"]
 [ext_resource type="Script" uid="uid://5oybiurmoc2" path="res://player/states/player_fall.gd" id="14_32hag"]
 
-[sub_resource type="Animation" id="Animation_boad6"]
-resource_name = "idle"
-loop_mode = 1
-step = 0.0166667
+[sub_resource type="Animation" id="Animation_rgyib"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -38,8 +36,10 @@ tracks/1/keys = {
 "values": [Vector2(20, 30)]
 }
 
-[sub_resource type="Animation" id="Animation_rgyib"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_boad6"]
+resource_name = "idle"
+loop_mode = 1
+step = 0.0166667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -134,3 +134,5 @@ script = ExtResource("13_wodsf")
 
 [node name="Fall" type="Node" parent="StateMachine"]
 script = ExtResource("14_32hag")
+
+[node name="Hurt" type="Node" parent="StateMachine"]

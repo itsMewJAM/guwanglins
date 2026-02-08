@@ -6,9 +6,28 @@ var player
 
 func enter():
 	player = state_machine.get_parent()
-	print(player)
-	#player.anim.play("idle")
+	player.anim.play("idle")
+	player.velocity.x = 0
 
-func physics_update(delta: float):
-	if player.trying_attack:
-		state_machine.change_state("jump")
+func update(delta: float):
+	# TODO: Check if hit
+	
+	if player.is_on_floor:
+		if player.trying_jump:
+			state_machine.change_state("jump")
+		elif player.attack == player.Attack.ATTACK_5X:
+			state_machine.change_state("attack5x")
+		elif player.attack == player.Attack.ATTACK_2X:
+			state_machine.change_state("attack2x")
+		elif player.attack == player.Attack.ATTACK_236X:
+			state_machine.change_state("attack236x")
+		elif player.attack == player.Attack.ATTACK_623X:
+			state_machine.change_state("attack5x")
+		elif player.attack == player.Attack.ATTACK_22X:
+			state_machine.change_state("attack22x")
+		elif 1 >= player.direction_trying and player.direction_trying >= 3:
+			state_machine.change_state("crouch")
+		elif player.direction_trying == 4 or player.direction_trying == 6:
+			state_machine.change_state("run")
+	else:
+		state_machine.change_state("fall")

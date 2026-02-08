@@ -23,7 +23,8 @@ var trying_jump := false				# Jump button pressed
 var direction_facing := 1			# -1, 1
 var direction_hurt := 0				# -1, 0, 1 (0 = not hurt)
 var attack_stance : bool = false		# false = sheathed, true = unsheathed
-var sheath_allowed : bool = true		# Condition was met to change to sheathed
+var sheath_allowed : bool = true		# Condition is met to change to sheathed
+var change_dir_allowed : bool = true # Condition is met to change direction
 
 
 func _process(delta: float) -> void:

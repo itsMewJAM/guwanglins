@@ -7,6 +7,7 @@ var player
 func enter():
 	player = state_machine.get_parent()
 	# player.anim.play("fall") TODO: create animation
+	player.change_dir_allowed = false
 	player.velocity.x = 0
 
 func update(delta: float):

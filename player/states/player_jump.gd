@@ -8,6 +8,7 @@ var direction_jumping
 func enter():
 	player = state_machine.get_parent()
 	# player.anim.play("jump")  TODO: create animation
+	player.change_dir_allowed = false
 	player.velocity.y = player.jump_force
 	
 	# Numpad to L/R (-1, 0, 1) direction conversion

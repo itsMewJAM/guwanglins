@@ -12,7 +12,7 @@ func enter():
 func update(delta: float):
 	# TODO: Check if hit
 	
-	if player.is_on_floor:
+	if player.is_on_floor():
 		if player.trying_jump:
 			state_machine.change_state("jump")
 		elif player.attack == player.Attack.ATTACK_5X:

@@ -1,28 +1,46 @@
-extends GroundedCharacter2D
+extends CharacterBody2D
 
 class_name Player
 
-enum Attack {NONE, ATTACK_5X, ATTACK_2X, ATTACK_236X, ATTACK_623X, ATTACK_22X}
+# Preloads & get nodes
 const InputChecker = preload('res://player/attack_input_checks.gd')
-
 @export var anim : AnimationPlayer
 
-var direction_facing := 1 # -1, 1
-var input_registry = []
-var attack_stance = false
-var attack : Attack = Attack.NONE
+# MOVEMENT STATS
+@export var speed_grounded := 100.0
+@export var speed_airborne := 75.0
+@export var jump_force := -200.0
+@export var gravity := 400.0
+
+# INPUT VARS
+enum Attack {NONE, ATTACK_5X, ATTACK_2X, ATTACK_236X, ATTACK_623X, ATTACK_22X}
+var attack : Attack = Attack.NONE	# Attack motion performed
+var input_registry = []				# Stores inputs for motion input detection
+var direction_trying := 5			# Direction held (Numpad notation)
+var trying_jump := false				# Jump button pressed
+
+# CONDITION VARS	
+var direction_facing := 1			# -1, 1
+var direction_hurt := 0				# -1, 0, 1 (0 = not hurt)
+var attack_stance : bool = false		# false = sheathed, true = unsheathed
+var sheath_allowed : bool = true		# Condition was met to change to sheathed
+
 
 func _process(delta: float) -> void:
 	# Get movement direction from input
-	direction_trying = Input.get_axis("player_left", "player_right") # -1, 0, 1
+	direction_trying = 5 + Input.get_axis("player_left", "player_right") - 3*(Input.get_axis("player_up", "player_down"))
 	trying_jump = Input.is_action_just_pressed("player_jump")
-	trying_attack = Input.is_action_just_pressed("player_attack")
 	attack = _handle_attack_input()
 	
+func _physics_process(delta: float) -> void:
+	# Apply gravity
+	velocity.y += gravity * delta
+	
+	#Move using velocity
+	move_and_slide()
+	
 func _handle_attack_input() -> Attack:
-	# Maps the player input to the numpad notation of inputs
-	var input_8way = 5 + Input.get_axis("player_left", "player_right") - 3*(Input.get_axis("player_up", "player_down"))
-	input_registry.push_front(input_8way)
+	input_registry.push_front(direction_trying)
 	if input_registry.size() > 30:
 		input_registry.pop_back()
 

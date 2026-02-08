@@ -1,14 +1,15 @@
 extends State
 
-class_name PlayerRun
+class_name PlayerCrouch
 
 var player
 
 func enter():
 	player = state_machine.get_parent()
-	# player.anim.play("run") TODO: create animation
+	player.anim.play("crouch")
+	player.velocity.x = 0
 	player.change_dir_allowed = true
-	
+
 func update(delta: float):
 	# TODO: Check if hit
 	
@@ -21,13 +22,9 @@ func update(delta: float):
 			state_machine.change_state("attack5x")
 		elif player.attack == player.Attack.ATTACK_22X:
 			state_machine.change_state("attack22x")
-		elif 1 <= player.direction_trying and player.direction_trying <= 3:
-			state_machine.change_state("crouch")
 		elif player.direction_trying == 5:
 			state_machine.change_state("idle")
+		elif player.direction_trying == 4 or player.direction_trying == 6:
+			state_machine.change_state("run")
 	else:
 		state_machine.change_state("fall")
-
-
-func physics_update(delta: float):
-	player.velocity.x = (player.direction_trying - 5) * player.speed_grounded

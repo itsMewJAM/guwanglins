@@ -1,32 +1,23 @@
 extends GroundedCharacter2D
 
+class_name Player
+
 enum Attack {NONE, ATTACK_5X, ATTACK_2X, ATTACK_236X, ATTACK_623X, ATTACK_22X}
-
 const InputChecker = preload('res://player/attack_input_checks.gd')
-@onready var _animated_sprite = $AnimatedSprite2D
 
-var direction_facing := 1 # This variable is kinda ugly theres gotta be a better way
+@export var anim : AnimationPlayer
+
+var direction_facing := 1 # -1, 1
 var input_registry = []
 var attack_stance = false
-
-func _ready() -> void:
-	_animated_sprite.play('idle')
+var attack : Attack = Attack.NONE
 
 func _process(delta: float) -> void:
 	# Get movement direction from input
-	direction_trying = Input.get_axis("player_left", "player_right")
-	
-	# PLACEHOLDER for camera movement
-	if direction_trying != 0:
-		direction_facing = direction_trying
-	
-	trying_jump = Input.is_action_pressed("player_jump")
-	
-	_handle_attack(_handle_attack_input())
-	_handle_animation()
-
-func _handle_animation() -> void:
-	pass
+	direction_trying = Input.get_axis("player_left", "player_right") # -1, 0, 1
+	trying_jump = Input.is_action_just_pressed("player_jump")
+	trying_attack = Input.is_action_just_pressed("player_attack")
+	attack = _handle_attack_input()
 	
 func _handle_attack_input() -> Attack:
 	# Maps the player input to the numpad notation of inputs
@@ -40,7 +31,7 @@ func _handle_attack_input() -> Attack:
 		return Attack.NONE
 	# Inputs that come first have higher priority
 	# Uncomment when 623X is implemented
-	print(input_registry)
+	#print(input_registry)
 	if InputChecker.check_623X(input_registry) and !attack_stance:
 	# change later
 		print('623x')
@@ -57,21 +48,4 @@ func _handle_attack_input() -> Attack:
 	elif attack_stance:
 		print('5x')
 		return Attack.ATTACK_5X
-	return Attack.NONE 
-
-func _handle_attack(attack: Attack) -> void:
-	match attack:
-		Attack.ATTACK_5X:
-			print('5x')
-			_animated_sprite.play("attack")
-		Attack.ATTACK_236X:
-			attack_stance = true
-			_animated_sprite.play("236x")
-		Attack.ATTACK_22X:
-			if attack_stance:
-				attack_stance = false
-				_animated_sprite.play("sheathe")
-			else:
-				attack_stance = true
-				_animated_sprite.play("unsheathe")
-		
+	return Attack.NONE

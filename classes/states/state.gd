@@ -2,7 +2,7 @@ extends Node
 
 class_name State
 
-var state_machine: StateMachine
+var state_machine: StateMachine = get_parent()
 
 func enter():
 	pass

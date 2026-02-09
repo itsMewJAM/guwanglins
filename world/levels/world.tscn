@@ -51,4 +51,4 @@ floor_snap_length = 10.0
 script = ExtResource("4_vgxu7")
 
 [node name="StacclawtoBullet" parent="." instance=ExtResource("5_amlj2")]
-position = Vector2(237, 32)
+position = Vector2(186, 89)

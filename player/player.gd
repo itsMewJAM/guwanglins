@@ -38,7 +38,7 @@ func _process(delta: float) -> void:
 	if change_dir_allowed and Input.get_axis("player_left", "player_right") != 0:
 		direction_facing = Input.get_axis("player_left", "player_right")
 	sprite.flip_h = direction_facing < 0
-	sprite.offset.x = 6 - direction_facing * 6 # NOTE: Temporary fix to keep standing player sprite centered
+	sprite.offset.x = 8 + direction_facing * 7 # NOTE: Temporary fix to keep standing player sprite centered
 	
 func _physics_process(delta: float) -> void:
 	# Apply gravity

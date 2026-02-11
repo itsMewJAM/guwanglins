@@ -3,13 +3,9 @@ extends State
 class_name PlayerAttack
 
 var player
-# Don't modify this or the I will smite you.
+# Don't modify this outside of the enter() call or I will smite you.
 # GDScript is cringe and won't allow me to make this a const since a dict is mutable. Joy.
-var _attack_anim_dict = {
-	player.Attack.ATTACK_5X: 'attack_5x',
-	player.Attack.ATTACK_236X: 'attack_236x',
-	player.Attack.ATTACK_22X: 'attack_22x',
-}
+var _attack_anim_dict
 
 # Assumes it's being given a good input by the input checker and state transition.
 # (maybe) TODO: Add check for invalid input combinations (ie: ATTACK_236X while attack_stance = true)
@@ -28,6 +24,11 @@ func _handle_attack_anim():
 
 func enter():
 	player = state_machine.get_parent()
+	_attack_anim_dict = {
+		player.Attack.ATTACK_5X: 'attack_5x',
+		player.Attack.ATTACK_236X: 'attack_236x',
+		player.Attack.ATTACK_22X: 'attack_22x',
+	}
 	player.anim.play("crouch")
 	player.velocity.x = 0
 	player.change_dir_allowed = false

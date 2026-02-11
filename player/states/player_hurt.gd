@@ -9,7 +9,6 @@ func enter():
 	player.anim.play("hurt")
 	player.take_damage()
 	player.change_dir_allowed = false
-	player.direction_hurt = player.direction_trying
 	player.velocity.y = player.jump_force
 
 func update(delta: float):

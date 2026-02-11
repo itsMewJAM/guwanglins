@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=4 uid="uid://b4fe222pd66kr"]
+[gd_scene load_steps=8 format=4 uid="uid://b4fe222pd66kr"]
 
 [ext_resource type="Texture2D" uid="uid://djra6u41nu5c" path="res://world/tilesets/blockout_terrain.png" id="1_1xuw6"]
 [ext_resource type="PackedScene" uid="uid://fchlp0pf8cpe" path="res://enemies/battuto/battuto.tscn" id="2_amlj2"]
 [ext_resource type="PackedScene" uid="uid://cb70s0qb64mt2" path="res://player/player.tscn" id="3_c6wff"]
 [ext_resource type="Script" uid="uid://dq1s2r14jj3bi" path="res://world/camera_2d.gd" id="4_vgxu7"]
+[ext_resource type="PackedScene" uid="uid://cx8ep4eq7bca4" path="res://enemies/stacclawto/stacclawto_bullet.tscn" id="5_amlj2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tlwt5"]
 texture = ExtResource("1_1xuw6")
@@ -48,3 +49,6 @@ floor_snap_length = 10.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("4_vgxu7")
+
+[node name="StacclawtoBullet" parent="." instance=ExtResource("5_amlj2")]
+position = Vector2(186, 89)

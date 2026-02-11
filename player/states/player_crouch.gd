@@ -8,7 +8,7 @@ func enter():
 	player = state_machine.get_parent()
 	player.anim.play("crouch")
 	player.velocity.x = 0
-	player.change_dir_allowed = true
+	player.change_dir_allowed = false 
 
 func update(delta: float):
 	# TODO: Check if hit
@@ -16,15 +16,14 @@ func update(delta: float):
 	if player.is_on_floor():
 		if player.trying_jump:
 			state_machine.change_state("jump")
-		elif player.attack == player.Attack.ATTACK_236X:
-			state_machine.change_state("attack236x")
-		elif player.attack == player.Attack.ATTACK_623X:
-			state_machine.change_state("attack5x")
-		elif player.attack == player.Attack.ATTACK_22X:
-			state_machine.change_state("attack22x")
+		elif (player.attack_input == player.Attack.ATTACK_623X or 
+			  player.attack_input == player.Attack.ATTACK_236X or 
+			  player.attack_input == player.Attack.ATTACK_22X):
+			state_machine.change_state("attack")
 		elif player.direction_trying == 5:
 			state_machine.change_state("idle")
 		elif player.direction_trying == 4 or player.direction_trying == 6:
 			state_machine.change_state("run")
 	else:
 		state_machine.change_state("fall")
+

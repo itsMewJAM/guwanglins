@@ -15,7 +15,7 @@ const InputChecker = preload('res://player/attack_input_checks.gd')
 
 # INPUT VARS
 enum Attack {NONE, ATTACK_5X, ATTACK_2X, ATTACK_236X, ATTACK_623X, ATTACK_22X}
-var attack : Attack = Attack.NONE	# Attack motion performed
+var attack_input : Attack = Attack.NONE	# Attack motion performed
 var input_registry = []				# Stores inputs for motion input detection
 var direction_trying := 5			# Direction held (Numpad notation)
 var trying_jump := false				# Jump button pressed
@@ -32,7 +32,7 @@ func _process(delta: float) -> void:
 	# Get movement direction from input
 	direction_trying = 5 + Input.get_axis("player_left", "player_right") - 3*(Input.get_axis("player_up", "player_down"))
 	trying_jump = Input.is_action_just_pressed("player_jump")
-	attack = _handle_attack_input()
+	attack_input = _handle_attack_input()
 	
 	# Update facing direction
 	if change_dir_allowed and Input.get_axis("player_left", "player_right") != 0:
@@ -56,22 +56,16 @@ func _handle_attack_input() -> Attack:
 	if !Input.is_action_just_pressed("player_attack"):
 		return Attack.NONE
 	# Inputs that come first have higher priority
-	# Uncomment when 623X is implemented
-	#print(input_registry)
 	if InputChecker.check_623X(input_registry) and !attack_stance:
-	# change later
-		print('623x')
+	# change later when 623X is implemented
 		return Attack.ATTACK_236X
 	elif InputChecker.check_236X(input_registry) and !attack_stance:
-		print('236x')
 		return Attack.ATTACK_236X
 	# Uncomment when 2X and crouching are implemented
 	# elif Input.is_action_pressed("player_down") and attack_stance:
 	#	return Attack.ATTACK_2X
 	elif InputChecker.check_22X(input_registry):
-		print('22x')
 		return Attack.ATTACK_22X
 	elif attack_stance:
-		print('5x')
 		return Attack.ATTACK_5X
 	return Attack.NONE

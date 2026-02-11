@@ -5,13 +5,19 @@ class_name Player
 # Preloads & get nodes
 const InputChecker = preload('res://player/attack_input_checks.gd')
 @export var anim : AnimationPlayer
-@export var sprite: Sprite2D
+@onready var sprite: Sprite2D = $Sprite2D
+@onready var hurtbox: CollisionShape2D = $Hurtboxes/Hurtbox
+@onready var audio: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
-# MOVEMENT STATS
+# STATS
 @export var speed_grounded := 100.0
 @export var speed_airborne := 75.0
 @export var jump_force := -200.0
 @export var gravity := 400.0
+
+@export var max_health : int
+var health : int
+var damage_allowed : bool = true
 
 # INPUT VARS
 enum Attack {NONE, ATTACK_5X, ATTACK_2X, ATTACK_236X, ATTACK_623X, ATTACK_22X}
@@ -70,3 +76,8 @@ func _handle_attack_input() -> Attack:
 	elif attack_stance:
 		return Attack.ATTACK_5X
 	return Attack.NONE
+
+# Take damage function. Keep separate from hurt state in case we want something like drowning or fire damage that doesnt pop you up into the air.
+func take_damage(amount: int = 1) -> void:
+	health -= amount
+	audio.play()

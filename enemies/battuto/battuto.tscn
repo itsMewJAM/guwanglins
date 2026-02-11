@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://fchlp0pf8cpe"]
+[gd_scene load_steps=7 format=3 uid="uid://fchlp0pf8cpe"]
 
+[ext_resource type="Script" uid="uid://bq25f4oie7pck" path="res://enemies/battuto/battuto.gd" id="1_a75xy"]
 [ext_resource type="Texture2D" uid="uid://dngjhipphaxjx" path="res://enemies/battuto/sprites/battuto_eye_back.png" id="1_fqeix"]
 [ext_resource type="Texture2D" uid="uid://dwavvqbik65wt" path="res://enemies/battuto/sprites/battuto_eye.png" id="2_a75xy"]
 [ext_resource type="Texture2D" uid="uid://ki47jvud2wmb" path="res://enemies/battuto/sprites/battuto_body.png" id="3_8fkes"]
@@ -7,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bgnpqfodbadse" path="res://enemies/battuto/sprites/battuto_wings.png" id="5_dkhj1"]
 
 [node name="Battuto" type="CharacterBody2D"]
+script = ExtResource("1_a75xy")
 
 [node name="BackEyeSprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_fqeix")

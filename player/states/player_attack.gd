@@ -43,3 +43,6 @@ func update(delta: float):
 		pass
 	else:
 		state_machine.change_state("fall")
+		
+#func exit():
+#	player.attack_input = player.Attack.NONE

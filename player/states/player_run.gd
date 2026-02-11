@@ -28,4 +28,5 @@ func update(delta: float):
 
 
 func physics_update(delta: float):
+	#player.velocity.x = ((player.direction_trying + 2) % 3 - 1) * player.speed_grounded
 	player.velocity.x = (player.direction_trying - 5) * player.speed_grounded

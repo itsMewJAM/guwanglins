@@ -1,27 +1,28 @@
 extends State
 
-class_name PlayerJump
+class_name PlayerHurt
 
 var player
-var direction_jumping
 
 func enter():
 	player = state_machine.get_parent()
-	# player.anim.play("jump")  TODO: create animation
+	player.anim.play("hurt")
+	player.take_damage()
 	player.change_dir_allowed = false
+	player.direction_hurt = player.direction_trying
 	player.velocity.y = player.jump_force
-	
-	# Numpad to L/R (-1, 0, 1) direction conversion
-	direction_jumping = (player.direction_trying + 2) % 3 - 1
 
 func update(delta: float):
-	# TODO: Check if hit
-	
 	# Check if landed
 	if player.is_on_floor() and player.velocity.y >= 0:
 		# Replace with recovery state later
-		state_machine.change_state("hurt")
+		state_machine.change_state("idle")
 
 func physics_update(delta: float):
 	if player.velocity.y < 0: # Jump is rising
-			player.velocity.x = direction_jumping * player.speed_airborne
+			player.velocity.x = player.direction_hurt * player.speed_airborne
+			
+func exit():
+	player.direction_hurt = 0
+	player.sprite.visible = true		
+	player.hurtbox.disabled = false

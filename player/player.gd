@@ -33,6 +33,7 @@ func _process(delta: float) -> void:
 	direction_trying = 5 + Input.get_axis("player_left", "player_right") - 3*(Input.get_axis("player_up", "player_down"))
 	trying_jump = Input.is_action_just_pressed("player_jump")
 	attack_input = _handle_attack_input()
+	print(attack_input)
 	
 	# Update facing direction
 	if change_dir_allowed and Input.get_axis("player_left", "player_right") != 0:

@@ -35,22 +35,22 @@ static func check_623X(input_registry):
 # (6) must have been first input in the past 6 frames, and none of the inputs can be more than 6 frames apart.
 # (There cannot be any other inputs 
 static func check_236X(input_registry):
-	var hit6 = _last_n_input(input_registry, 6, [], 0, 6)
+	var hit6 = _last_n_input(input_registry, 6, [], 0, 8)
 	if hit6 == -1: return false
-	var hit3 = _last_n_input(input_registry, 3, [1,2,4,5,7,8,9], hit6, 6)
+	var hit3 = _last_n_input(input_registry, 3, [1,2,4,5,7,8,9], hit6, 8)
 	if hit3 == -1: return false
-	var hit2 = _last_n_input(input_registry, 2, [1,4,5,6,7,8,9], hit3, 6)
+	var hit2 = _last_n_input(input_registry, 2, [1,4,5,6,7,8,9], hit3, 8)
 	if hit2 == -1: return false
 	return true
 
 static func check_22X(input_registry):
-	var hit2 = _last_n_input(input_registry, 2, [], 0, 2)
+	var hit2 = _last_n_input(input_registry, 2, [], 0, 6)
 	if hit2 == -1: return false
 	var hit_neutral = max(
 		_last_n_input(input_registry, 5, [], hit2, 6),
 		_last_n_input(input_registry, 8, [], hit2, 6)
 	)
 	if hit_neutral == -1: return false
-	var hit2_2 = _last_n_input(input_registry, 2, [], hit_neutral, 2)
+	var hit2_2 = _last_n_input(input_registry, 2, [], hit_neutral, 6)
 	if hit2_2 == -1: return false
 	return true

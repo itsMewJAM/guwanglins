@@ -6,6 +6,8 @@ class_name Player
 const InputChecker = preload('res://player/attack_input_checks.gd')
 @export var anim : AnimationPlayer
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var slash_sprite_front: Sprite2D = $SlashSpriteFront
+@onready var slash_sprite_back: Sprite2D = $SlashSpriteBack
 @onready var hurtbox: CollisionShape2D = $Hurtboxes/Hurtbox
 @onready var audio: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
@@ -45,7 +47,11 @@ func _process(delta: float) -> void:
 	if change_dir_allowed and Input.get_axis("player_left", "player_right") != 0:
 		direction_facing = Input.get_axis("player_left", "player_right")
 	sprite.flip_h = direction_facing < 0
+	slash_sprite_front.flip_h = direction_facing < 0
+	slash_sprite_back.flip_h = direction_facing < 0
 	sprite.offset.x = 8 + direction_facing * 7 # NOTE: Temporary fix to keep standing player sprite centered
+	slash_sprite_front.offset.x = -108 if direction_facing < 0 else 0
+	slash_sprite_back.offset.x = -108 if direction_facing < 0 else 0
 	
 func _physics_process(delta: float) -> void:
 	# Apply gravity

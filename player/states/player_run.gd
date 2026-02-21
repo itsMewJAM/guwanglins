@@ -15,9 +15,7 @@ func update(delta: float):
 	if player.is_on_floor():
 		if player.trying_jump:
 			state_machine.change_state("jump")
-		elif (player.attack_input == player.Attack.ATTACK_623X or 
-			  player.attack_input == player.Attack.ATTACK_236X or 
-			  player.attack_input == player.Attack.ATTACK_22X):
+		elif (player.attack_input != player.Attack.NONE):
 			state_machine.change_state("attack")
 		elif 1 <= player.direction_trying and player.direction_trying <= 3:
 			state_machine.change_state("crouch")

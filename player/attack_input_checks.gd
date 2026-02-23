@@ -15,7 +15,7 @@ static func _last_n_input(
 		if i >= 30: return -1
 		if input_registry[i] == find_input:
 			index = i 
-		if int(input_registry[i]) in excluded_inputs: return -1
+		if int(input_registry[i]) in excluded_inputs: return index
 	return index
 
 # Check for 623X input. Conditions: 
@@ -35,11 +35,11 @@ static func check_623X(input_registry):
 # (6) must have been first input in the past 6 frames, and none of the inputs can be more than 6 frames apart.
 # (There cannot be any other inputs 
 static func check_236X(input_registry):
-	var hit6 = _last_n_input(input_registry, 6, [], 0, 8)
+	var hit6 = _last_n_input(input_registry, 6, [], 0, 6)
 	if hit6 == -1: return false
-	var hit3 = _last_n_input(input_registry, 3, [1,2,4,5,7,8,9], hit6, 8)
+	var hit3 = _last_n_input(input_registry, 3, [1,2,4,5,7,8,9], hit6, 6)
 	if hit3 == -1: return false
-	var hit2 = _last_n_input(input_registry, 2, [1,4,5,6,7,8,9], hit3, 8)
+	var hit2 = _last_n_input(input_registry, 2, [1,4,5,6,7,8,9], hit3, 6)
 	if hit2 == -1: return false
 	return true
 

@@ -42,7 +42,8 @@ func _process(delta: float) -> void:
 	direction_trying = 5 + Input.get_axis("player_left", "player_right") - 3*(Input.get_axis("player_up", "player_down"))
 	trying_jump = Input.is_action_just_pressed("player_jump")
 	attack_input = _handle_attack_input()
-	print(attack_input)
+	if attack_input != Attack.NONE:
+		print(attack_input)
 	
 	# Update facing direction
 	if change_dir_allowed and Input.get_axis("player_left", "player_right") != 0:
@@ -71,6 +72,10 @@ func _handle_attack_input() -> Attack:
 	# Start checking for which attack to do, but don't bother checking if the player hasn't inputted any attacks
 	if !Input.is_action_just_pressed("player_attack"):
 		return Attack.NONE
+		
+	#DEBUG: Display input registry any time you press attack
+	print(input_registry)
+	
 	# Inputs that come first have higher priority
 	if InputChecker.check_623X(input_registry) and !attack_stance:
 	# change later when 623X is implemented

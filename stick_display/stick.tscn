@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://6meodus7fnjm"]
+
+[ext_resource type="Texture2D" uid="uid://ysrfutbe61gv" path="res://stick_display/sprites/shmup_stick_base.png" id="1_m5hos"]
+[ext_resource type="Script" uid="uid://dv2nq0sudrjq7" path="res://stick_display/stick.gd" id="1_mifi2"]
+[ext_resource type="Texture2D" uid="uid://cb5we6w15fxkt" path="res://stick_display/sprites/shmup_stick_ball.png" id="2_mifi2"]
+
+
+[node name="Stick" type="Node2D" node_paths=PackedStringArray("ball_sprite")]
+script = ExtResource("1_mifi2")
+ball_sprite = NodePath("StickBall")
+stick_distance = 24
+
+[node name="StickBase" type="Sprite2D" parent="."]
+texture = ExtResource("1_m5hos")
+
+[node name="StickBall" type="Sprite2D" parent="."]
+texture = ExtResource("2_mifi2")

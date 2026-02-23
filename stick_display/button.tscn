@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7f5mjavrynhn"]
+
+[ext_resource type="Script" uid="uid://cpxpsog5brq25" path="res://stick_display/button.gd" id="1_b5a7g"]
+[ext_resource type="Texture2D" uid="uid://dfvdsr0hcrug0" path="res://stick_display/sprites/shmup_buttons_new.png" id="2_b5a7g"]
+
+
+[node name="Button" type="Node2D" node_paths=PackedStringArray("button_sprite")]
+script = ExtResource("1_b5a7g")
+button_sprite = NodePath("Sprite2D")
+input_name = "button_a"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_b5a7g")
+hframes = 5
+vframes = 2

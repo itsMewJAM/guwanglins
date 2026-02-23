@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0g1vhtp4n1o7"]
+
+[ext_resource type="PackedScene" uid="uid://6meodus7fnjm" path="res://stick_display/stick.tscn" id="1_8qpdj"]
+[ext_resource type="PackedScene" uid="uid://b7f5mjavrynhn" path="res://stick_display/button.tscn" id="2_t0bcf"]
+
+[node name="stick_display" type="Node2D"]
+
+[node name="Stick" parent="." instance=ExtResource("1_8qpdj")]
+position = Vector2(32, 32)
+
+[node name="Button" parent="." instance=ExtResource("2_t0bcf")]
+position = Vector2(91, 20)
+input_name = "player_jump"
+
+[node name="Button2" parent="." instance=ExtResource("2_t0bcf")]
+position = Vector2(122, 41)
+input_name = "player_attack"
+button_index = 1

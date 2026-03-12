@@ -48,13 +48,13 @@ func _process(delta: float) -> void:
 	# Update facing direction
 	if change_dir_allowed and Input.get_axis("player_left", "player_right") != 0:
 		direction_facing = Input.get_axis("player_left", "player_right")
-	sprite.flip_h = direction_facing < 0
-	slash_sprite_front.flip_h = direction_facing < 0
-	slash_sprite_back.flip_h = direction_facing < 0
-	sprite.offset.x = 8 + direction_facing * 7 # NOTE: Temporary fix to keep standing player sprite centered
-	slash_sprite_front.offset.x = -108 if direction_facing < 0 else 0
-	slash_sprite_back.offset.x = -108 if direction_facing < 0 else 0
-	#hitbox.position.x = -108 if direction_facing < 0 else 0
+	if direction_facing < 0:
+		rotation = PI
+		scale.y = -1 
+	else:
+		rotation = 0
+		scale.y = 1
+	
 	
 	
 func _physics_process(delta: float) -> void:

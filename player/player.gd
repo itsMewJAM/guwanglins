@@ -39,6 +39,7 @@ var change_dir_allowed : bool = true # Condition is met to change direction
 
 func _process(delta: float) -> void:
 	# Get movement direction from input
+	# direction_trying is based on numpad notation (where 6 is right and 4 is left) 
 	direction_trying = 5 + Input.get_axis("player_left", "player_right") - 3*(Input.get_axis("player_up", "player_down"))
 	trying_jump = Input.is_action_just_pressed("player_jump")
 	attack_input = _handle_attack_input()
@@ -65,7 +66,13 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 func _handle_attack_input() -> Attack:
-	input_registry.push_front(direction_trying)
+	var corrected_input = direction_trying
+	# Invert horizontal inputs for the input reader if facing left
+	if direction_facing < 0 and direction_trying % 3 == 1:
+		corrected_input += 2
+	if direction_facing < 0 and direction_trying % 3 == 0:
+		corrected_input -= 2
+	input_registry.push_front(corrected_input)
 	if input_registry.size() > 30:
 		input_registry.pop_back()
 

@@ -41,4 +41,6 @@ func take_damage(amount: int = 1) -> void:
 	health -= amount
 	audio.play()
 
-
+# Base Method for Enemy AI. Abstract in principle, so it does nothing.
+func make_decisions()
+	pass 

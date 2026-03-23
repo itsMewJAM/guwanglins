@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name Enemy
+
 @export var anim: AnimationPlayer 
 @onready var player: Player 
 @onready var sprite: Sprite2D = $Sprite2D
@@ -26,7 +28,7 @@ func _ready() -> void:
 		player = %Player
 		
 func _process(delta: float) -> void:
-	_physics_process()
+	_physics_process(delta)
 
 # Identical to Player
 func _physics_process(delta: float) -> void:
@@ -42,5 +44,5 @@ func take_damage(amount: int = 1) -> void:
 	audio.play()
 
 # Base Method for Enemy AI. Abstract in principle, so it does nothing.
-func make_decisions()
+func make_decisions():
 	pass 

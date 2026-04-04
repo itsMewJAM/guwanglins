@@ -10,11 +10,18 @@ class_name Enemy
 
 # STATS
 @export var gravity := 400.0
+# Child classes should override these
+@export var speed_grounded := 0
+@export var speed_airborne := 0
+@export var jump_force := -200
 
 @export var max_health : int
-
 var health : int
 var damage_allowed : bool = true
+
+# CONDITION VARS	
+var direction_facing := 1			# -1, 1
+var direction_hurt := 0				# -1, 0, 1 (0 = not hurt)
 
 # Abstract class without enforcement 
 # The intention is to never create an instance of a base enemy class,

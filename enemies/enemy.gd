@@ -3,7 +3,7 @@ extends CharacterBody2D
 class_name Enemy
 
 @export var anim: AnimationPlayer 
-@onready var player: Player 
+@export var player: Player 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var hitbox: CollisionShape2D = $Hurtboxes/Hurtbox
 @onready var audio: AudioStreamPlayer2D = $AudioStreamPlayer2D
@@ -23,10 +23,6 @@ var damage_allowed : bool = true
 
 # Abstract class enforcement was added in Godot 4.5 but we're still on 4.4 teehee
 
-func _ready() -> void:
-	if !player:
-		player = %Player
-		
 func _process(delta: float) -> void:
 	_physics_process(delta)
 

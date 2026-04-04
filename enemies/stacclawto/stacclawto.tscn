@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://c1puerhhg4wdu"]
+[gd_scene load_steps=9 format=3 uid="uid://c1puerhhg4wdu"]
 
 [ext_resource type="Script" path="res://enemies/stacclawto/stacclawto.gd" id="1_4x11t"]
 [ext_resource type="Texture2D" uid="uid://c57fcy7kb8v7u" path="res://enemies/stacclawto/stacclawto_idle.png" id="2_syv3l"]
 [ext_resource type="Script" uid="uid://xit3eyg7hh3p" path="res://classes/states/state_machine.gd" id="3_owpk5"]
+[ext_resource type="Script" uid="uid://khfj60g440nt" path="res://enemies/stacclawto/stacclawto_idle.gd" id="4_ms3x5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_syv3l"]
 radius = 30.0
@@ -57,3 +58,7 @@ debug_color = Color(0.7, 0, 0.0219805, 0.42)
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("3_owpk5")
 metadata/_custom_type_script = "uid://xit3eyg7hh3p"
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("4_ms3x5")
+metadata/_custom_type_script = "uid://beeuhdvuqwwpj"
